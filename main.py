@@ -21,10 +21,10 @@ class TheRequest(BaseModel):
     X: list = Field(default=[1,2,3,4])
 
 logging.basicConfig(level=logging.INFO)
-logging.info("model_server: is running.")
 
 app = FastAPI()
 
+logging.info(f"model_server: Is running.")
 logging.debug(f"model_server: TheRequest =\
               {TheRequest.schema_json(indent=2)}")
 
@@ -32,8 +32,8 @@ logging.debug(f"model_server: TheRequest =\
 # Load the scikit-learn model from storage.
 #
 url = "https://koz.s3.amazonaws.com/models/sklearn/iris-svc.joblib"
-filename = os.path.join(os.getcwd(), "iris-svc.joblib")
 logging.info(f'model_server: Loading {url}')
+filename = os.path.join(os.getcwd(), "iris-svc.joblib")
 urllib.request.urlretrieve(url, filename)
 logging.info(f'model_server: Retrieved {url}')
 logging.info(f"model_server: Loading model: {filename}")
@@ -44,16 +44,20 @@ logging.debug(f"model_server: Model params: {clf.get_params()}")
 @app.get("/")
 @app.get("/v2")
 async def welcome()-> str:
+    """Welcome greeting string
+
+    Returns:
+        str: The greeting string
     """
-    Welcome greeting string
-    """
-    logging.info("model_server: get()")
+    logging.info(f"model_server: get()")
     return {"greeting": "Welcome to the ML model server."}
 
 @app.get("/v2/models/iris-svm")
 async def usage()-> str:
-    """ 
-    Return model schema
+    """Return the model schema.
+        Need to make this v2 compliant.
+    Returns:
+        str: Example schema
     """
     schema = {
         "X": [
