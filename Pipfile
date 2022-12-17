@@ -4,13 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-mypy = "*"
-ruff = "*"
-black = "*"
-ipykernel = "*"
-fastapi = "*"
 uvicorn = "*"
-sklearn = "*"
+fastapi = "*"
+joblib = "*"
+numpy = "*"
 scikit-learn = "*"
 
 [dev-packages]

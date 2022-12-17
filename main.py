@@ -64,7 +64,7 @@ async def usage()-> str:
     }
     return schema
 
-@app.post("/predict/")
+@app.post("/v2/models/iris-svm/infer")
 async def predict(body: TheRequest) -> str:
     """
     Description: The prediction endpoint. 

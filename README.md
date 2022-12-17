@@ -1,9 +1,10 @@
 # fastapi-fun
 A simple model server using FastAPI
 
-## Notes
+## How to
 
 ```
+pipenv install
 pipenv shell
 
 uvicorn main:app
