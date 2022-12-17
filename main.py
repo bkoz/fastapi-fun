@@ -20,7 +20,12 @@ class TheRequest(BaseModel):
     """
     X: list = Field(default=[1,2,3,4])
 
-logging.basicConfig(level=logging.INFO)
+class TheResponse(BaseModel):
+    """The response class.
+    """
+    output: int
+
+logging.basicConfig(level=logging.DEBUG)
 
 app = FastAPI()
 
@@ -69,23 +74,23 @@ async def usage()-> str:
     }
     return schema
 
-@app.post("/v2/models/iris-svm/infer")
-async def predict(body: TheRequest) -> str:
+@app.post("/v2/models/iris-svm/infer", response_model=TheResponse)
+async def predict(body: TheRequest) -> TheResponse:
     """
     Description: The prediction endpoint. 
     Converts the REST request body to a numpy array
     and returns a prediction.
 
     Args:
-                 body: The request body.
+                 body: TheRequest
 
     Returns:
                  A json output string where:
                  0, 1, or 2 representing the Iris flower class
     """
     X = numpy.array([body.X])
-    ret = {}
-    ret['output'] = clf.predict(X).tolist()
+    output = clf.predict(X).tolist()[0]
+    ret = TheResponse(output=output).dict()
     logging.debug(f"model_server: request = {X}, prediction = {ret}")
     return ret
 
