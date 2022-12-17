@@ -3,6 +3,7 @@
 A simple ML model server using FastAPI.
 """
 
+from anyio import Condition
 from fastapi import FastAPI
 from pydantic import BaseModel
 from pydantic import Field
@@ -84,6 +85,4 @@ async def predict(body: TheRequest) -> str:
     logging.debug(f"model_server: request = {X}, prediction = {ret}")
     return ret
 
-@app.get("/v2/models/iris-svm/config")
-def config()-> str:
-    return "config"
+
