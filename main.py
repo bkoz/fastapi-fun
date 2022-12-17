@@ -83,3 +83,7 @@ async def predict(body: TheRequest) -> str:
     ret['output'] = clf.predict(X).tolist()
     logging.debug(f"model_server: request = {X}, prediction = {ret}")
     return ret
+
+@app.get("/v2/models/iris-svm/config")
+def config()-> str:
+    return "config"

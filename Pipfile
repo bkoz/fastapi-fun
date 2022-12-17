@@ -9,6 +9,10 @@ fastapi = "*"
 joblib = "*"
 numpy = "*"
 scikit-learn = "*"
+ipykernel = "*"
+mypy = "*"
+ruff = "*"
+black = "*"
 
 [dev-packages]
 
