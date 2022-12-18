@@ -18,7 +18,7 @@ class TheRequest(BaseModel):
     """
     Define the request schema.
     """
-    X: list = Field(default=[1,2,3,4])
+    X: list = Field(default=[5.9, 3.1, 5.1, 1.8])
 
 class TheResponse(BaseModel):
     """The response class.
@@ -66,10 +66,7 @@ async def usage()-> str:
     """
     schema = {
         "X": [
-            1.5,
-            2.8,
-            3.4,
-            4.3
+            5.9, 3, 5.1, 1.8
         ]
     }
     return schema
