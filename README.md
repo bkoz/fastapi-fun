@@ -3,11 +3,15 @@ A simple model server using FastAPI
 
 ## How to
 
+### Python Environment
 ```
 pipenv install
 pipenv shell
-
-uvicorn main:app
 ```
 
-Visit `https://localhost:8000/docs`.
+### Running the model server
+```
+python app.py
+```
+
+Visit `https://localhost:8080/docs`.
