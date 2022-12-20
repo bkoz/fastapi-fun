@@ -82,7 +82,7 @@ async def predict(body: TheRequest) -> TheResponse:
                  body: TheRequest
 
     Returns:
-                 A json output string where:
+                 TheResponse containing an integer:
                  0, 1, or 2 representing the Iris flower class
     """
     X = numpy.array([body.X])
